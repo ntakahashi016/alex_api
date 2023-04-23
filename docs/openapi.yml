@@ -1,0 +1,93 @@
+openapi: 3.0.0
+info:
+  version: 0.0.0
+  title: Alex API
+  description: >-
+    Alex system backend API
+servers:
+  - url: 'http://{host}:8081/api/v1'
+  description: go service api server endpoint application
+  variables:
+    host:
+      default: localhost
+      enum:
+        - localhost
+paths:
+  /user/register:
+    post:
+      tags:
+        - user
+      summary: user registration
+      description: |
+        Register a user from imputed information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John Smith
+                password:
+                  type: string
+                  format: password
+                  exapmle: qwerty123456
+              required:
+                - name
+                - password
+      response:
+        '200':
+          description: User registration succeeded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  statusCode:
+                    type: integer
+                    format: number
+                    example: 200
+                  method:
+                    type: string
+                    example: "POST"
+                  message:
+                    type: string
+                    example: "User registration succeeded."
+                  data:
+                    type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+              required:
+                - statusCode
+                - method
+                - message
+                - data
+        '500':
+          $ref: '#/components/responses/500Error'
+components:
+  responses:
+    500Error:
+      description: |
+        Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+                format: int64
+                example: "500"
+              method:
+                type: string
+                example: "POST"
+              message:
+                type: string
+                example: "Internal server error occured"
+              data:
+                type: object
+                example: null
