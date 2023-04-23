@@ -6,12 +6,12 @@ info:
     Alex system backend API
 servers:
   - url: 'http://{host}:8081/api/v1'
-  description: go service api server endpoint application
-  variables:
-    host:
-      default: localhost
-      enum:
-        - localhost
+    description: go service api server endpoint application
+    variables:
+      host:
+        default: localhost
+        enum:
+          - localhost
 paths:
   /user/register:
     post:
