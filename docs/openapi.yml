@@ -57,10 +57,10 @@ paths:
                     example: "User registration succeeded."
                   data:
                     type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
               required:
                 - statusCode
                 - method
